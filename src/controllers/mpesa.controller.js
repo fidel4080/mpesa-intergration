@@ -47,3 +47,16 @@ export const stkPush = async (req, res)=> {
         });
     }
 }
+
+//Safaricom sends payment result here
+
+export const mpesaCallback = (req, res)=> {
+    const callbackData = req.body.Body.stkCallback;
+    console.log('MPESA CALLBACK:', JSON.stringify(callbackData, null, 2)); //lets you see exactly what safaricom sent
+
+    //you must respond to safaricom
+    res.json({
+        ResultCode: 0,
+        ResultDesc: 'Accepted'
+    });
+}
